@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 
@@ -10,6 +9,8 @@ namespace TjuvOchPolis
     {
         public static int NumberOfMuggins = 0;
         public static int NumberOfArrests = 0;
+        public static int NumberOfMurders = 0;
+
         public static string CityInfoMuggins = " ";
         public static string CityInfoArrests = " ";
 
@@ -23,14 +24,28 @@ namespace TjuvOchPolis
                     if (tmpPerson is Citizen && person is Thief && tmpPerson.CurentPositionX == person.CurentPositionX
                                                                 && tmpPerson.CurentPositionY == person.CurentPositionY)
                     {
-                        if (tmpPerson.Inventory.Count > 0)
+                        bool kill = ProbabilityTrue(10);
+
+                        if (kill==true)
+                        {
+                            Murder(tmpPerson, personList);
+                            NumberOfMurders++;
+                            CityInfoMuggins = "EN MEDBORGARE HAR BLIVIT MÖRDAD!";
+                            Console.SetCursorPosition(item.CurentPositionX, item.CurentPositionY);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write("K");
+                            printActivity();
+                            Thread.Sleep(5000);
+                            Console.ForegroundColor = ConsoleColor.White;
+
+                        }
+                        else if (tmpPerson.Inventory.Count > 0)
                         {
                             CityInfoMuggins = Robery(tmpPerson, person);
                             Console.SetCursorPosition(item.CurentPositionX, item.CurentPositionY);
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Write("X");
                             NumberOfMuggins++;
-
                             printActivity();
                             Thread.Sleep(5000);
                             Console.ForegroundColor = ConsoleColor.White;
@@ -38,6 +53,12 @@ namespace TjuvOchPolis
                         else
                         {
                             CityInfoMuggins = "En tjuv försökte råna en medborgare men medborgaren hade inga värdesaker!";
+                            Console.SetCursorPosition(item.CurentPositionX, item.CurentPositionY);
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("X");
+                            printActivity();
+                            Thread.Sleep(5000);
+                            Console.ForegroundColor = ConsoleColor.White;
                         }
                     }
                 }
@@ -53,19 +74,17 @@ namespace TjuvOchPolis
             citizen.Inventory.RemoveAt(x);
             return info;
         }
-        public static string Arrest(List<Person> personList)
+        public static void Arrest(List<Person> personList)
         {
-            string info = " ";
-            //int nmbrArrests = 0;
             foreach (var item in personList)
             {
                 var tmpPerson = item;
                 foreach (var person in personList)
                 {
                     if (tmpPerson is Thief && person is Police && tmpPerson.CurentPositionX == person.CurentPositionX
-                                                                && tmpPerson.CurentPositionY == person.CurentPositionY
-                                                                /*&& tmpPerson.Inventory.Count>0*/)
+                                                                && tmpPerson.CurentPositionY == person.CurentPositionY)
                     {
+                       
                         if (tmpPerson.Inventory.Count > 0)
                         {
                             Seize(tmpPerson, person);
@@ -78,17 +97,23 @@ namespace TjuvOchPolis
 
                             Thread.Sleep(5000);
                             Console.ForegroundColor = ConsoleColor.White;
-
-
                         }
                         else
                         {
-                            CityInfoArrests = "Den misstänkte hade hade inget stöldgods på sig och sätts på fri fot i staden! ";
+                            CityInfoArrests = "Polisen stoppade en misstänkt gärningsman,\n"+
+                                "men den misstänkte hade hade inget stöldgods på sig och sätts på fri fot i staden! ";
+
+                            Console.SetCursorPosition(item.CurentPositionX, item.CurentPositionY);
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write("A");
+                            printActivity();
+
+                            Thread.Sleep(5000);
+                            Console.ForegroundColor = ConsoleColor.White;
                         }
                     }
                 }
             }
-            return info;
         }
         public static void Seize(Person thief, Person police)
         {
@@ -100,14 +125,12 @@ namespace TjuvOchPolis
         }
         public static void printActivity()
         {
-            Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(0, 26);
-            Console.WriteLine($"Antal rån i staden: {NumberOfMuggins}");
-            Console.WriteLine($"Antal gripna: {NumberOfArrests}");
-            Console.WriteLine(CityInfoArrests);
-
-            Console.WriteLine(CityInfoMuggins);
-
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($"Antal rån i staden: {NumberOfMuggins}\n" +
+                                    $"Antal gripna: {NumberOfArrests}\n" +
+                                      $"Antal mord: {NumberOfMurders}");
+            Console.WriteLine ($"{CityInfoArrests}\n{CityInfoMuggins}\n");
         }
         public static void GenerateActivity(List<Person> personlist)
         {
@@ -117,6 +140,18 @@ namespace TjuvOchPolis
             Arrest(personlist);
         }
 
+        private static bool ProbabilityTrue(int percent)
+        {
+            Random Random = new Random();
+            int RandomNummer = Random.Next(1, 100 + 1);
+            return RandomNummer <= percent;
+        }
+        private static void Murder(Person Citizen,List<Person> personList )
+        {
+            //int x = personList.IndexOf(Citizen);
+            //personList.RemoveAt(x);
+            Citizen = new Ghost(0,0,0," ");
+        }
 
     }
 }
