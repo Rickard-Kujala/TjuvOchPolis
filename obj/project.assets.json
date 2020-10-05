@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kujar\\source\\repos\\TjuvOchPolis\\TjuvOchPolis\\TjuvOchPolis.csproj",
+      "projectUniqueName": "C:\\Users\\kujar\\Documents\\GitHub\\TjuvOchPolis\\TjuvOchPolis.csproj",
       "projectName": "TjuvOchPolis",
-      "projectPath": "C:\\Users\\kujar\\source\\repos\\TjuvOchPolis\\TjuvOchPolis\\TjuvOchPolis.csproj",
+      "projectPath": "C:\\Users\\kujar\\Documents\\GitHub\\TjuvOchPolis\\TjuvOchPolis.csproj",
       "packagesPath": "C:\\Users\\kujar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kujar\\source\\repos\\TjuvOchPolis\\TjuvOchPolis\\obj\\",
+      "outputPath": "C:\\Users\\kujar\\Documents\\GitHub\\TjuvOchPolis\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\kujar\\AppData\\Roaming\\NuGet\\NuGet.Config",

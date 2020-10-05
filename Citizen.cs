@@ -15,6 +15,8 @@ namespace TjuvOchPolis
             CurentPositionY = curentpositionY;
             Direction = direction;
         }
+
+
         public static void GenerateCitizens(int a)//Skapar x-antal medborgare med Readline, slumpar startpositioner, Lägger till i listan Person
         {
             for (int i = 0; i < a; i++)//slumpa startpositioner
