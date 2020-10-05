@@ -6,12 +6,13 @@ namespace TjuvOchPolis
 {
     class Thief : Person
     {
-        public Thief(int curentpositionX, int curentpositionY, int direction, string token)
+        public Thief(int curentpositionX, int curentpositionY, int direction, string token, List<Belongings> inventory)
             : base(curentpositionX, curentpositionY, direction, token)
         {
             CurentPositionX = curentpositionX;
             CurentPositionY = curentpositionY;
             Direction = direction;
+            Inventory = inventory;
         }
         public static void GenerateThiefs(int a)//Skapar x-antal medborgare med Readline, slumpar startpositioner, Lägger till i listan Person
         {
@@ -26,7 +27,8 @@ namespace TjuvOchPolis
                 Random r2 = new Random();
                 int z = r2.Next(1, 9);
 
-                PersonList.Add(new Thief(x, y, z, "T"));
+                List<Belongings> inventory = new List<Belongings>();
+                PersonList.Add(new Thief(x, y, z, "T", inventory));
             }
         }
     }

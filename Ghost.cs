@@ -13,7 +13,7 @@ namespace TjuvOchPolis
             CurentPositionY = curentpositionY;
             Direction = direction;
         }
-        
-        
+
+
     }
 }
