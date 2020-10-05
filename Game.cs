@@ -15,7 +15,7 @@ namespace TjuvOchPolis
         public static Person[,] GameBoard = new Person[100, 25];
         private static int X = 100;
         private static int Y = 25;
-        public static void EmptyBoard()
+        private static void EmptyBoard()
         {
             for (int i = 0; i < Y; i++)
             {

@@ -14,7 +14,7 @@ namespace TjuvOchPolis
         public static string CityInfoMuggins = " ";
         public static string CityInfoArrests = " ";
 
-        public static void Muggin(List<Person> personList)
+        private static void Muggin(List<Person> personList)
         {
             foreach (var item in personList)
             {
@@ -64,7 +64,7 @@ namespace TjuvOchPolis
                 }
             }
         }
-        public static string Robery(Person citizen, Person thief)
+        private static string Robery(Person citizen, Person thief)
         {
             string info = " ";
             Random r = new Random();
@@ -74,7 +74,7 @@ namespace TjuvOchPolis
             citizen.Inventory.RemoveAt(x);
             return info;
         }
-        public static void Arrest(List<Person> personList)
+        private static void Arrest(List<Person> personList)
         {
             foreach (var item in personList)
             {
@@ -115,7 +115,7 @@ namespace TjuvOchPolis
                 }
             }
         }
-        public static void Seize(Person thief, Person police)
+        private static void Seize(Person thief, Person police)
         {
             for (int i = 0; i < thief.Inventory.Count; i++)//Loopa igenog tjuven lista och lägg till varje element till polisens lista
             {
@@ -123,7 +123,7 @@ namespace TjuvOchPolis
             }
             thief.Inventory.Clear();
         }
-        public static void printActivity()
+        private static void printActivity()
         {
             Console.SetCursorPosition(0, 26);
             Console.ForegroundColor = ConsoleColor.White;

@@ -13,10 +13,8 @@ namespace TjuvOchPolis
             while (true)
             {
                 Console.Clear();
-
                 Game.GenerateGameBoard(Personlist);
                 Coallition.GenerateActivity(Personlist);
-
                 Game.Move(Personlist);
 
             }
